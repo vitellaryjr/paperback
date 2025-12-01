@@ -10,10 +10,14 @@ SMODS.Joker {
   pos = { x = 9, y = 5 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
+
+  check_for_unlock = function(self, args)
+    return args.type == 'win' and G.GAME.paperback.max_consumeables <= 0
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

@@ -755,6 +755,7 @@ end
 function PB_UTIL.setup_extra_button(center, button_data)
   local click_func = center.key .. "_click"
   local can_use_func = center.key .. "_can_use"
+  local colour = button_data.colour or G.C.PAPERBACK_MAIN_COLOR
   local text = {}
 
   G.FUNCS[click_func] = function(e)
@@ -767,10 +768,13 @@ function PB_UTIL.setup_extra_button(center, button_data)
 
   G.FUNCS[can_use_func] = function(e)
     local c = e.config.ref_table
+    local can_use = true
     if c and button_data.can_use and type(button_data.can_use) == "function" then
-      return button_data:can_use(c)
+      can_use = button_data:can_use(c)
     end
-    return true
+
+    e.config.button = can_use and click_func or nil
+    e.config.colour = can_use and colour or G.C.UI.BACKGROUND_INACTIVE
   end
 
   center.paperback_create_extra_button = function(self, card)
@@ -791,7 +795,7 @@ function PB_UTIL.setup_extra_button(center, button_data)
               r = 0.08,
               hover = true,
               shadow = true,
-              colour = button_data.colour or G.C.PURPLE,
+              colour = colour,
               button = click_func,
               func = can_use_func,
               ref_table = card,

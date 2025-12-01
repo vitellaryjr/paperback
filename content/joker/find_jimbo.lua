@@ -11,11 +11,31 @@ SMODS.Joker {
   pos = { x = 1, y = 7 },
   atlas = "jokers_atlas",
   cost = 4,
-  unlocked = true,
-  discovered = false,
+  unlocked = false,
   blueprint_compat = true,
   eternal_compat = true,
 
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' and args.handname == 'High Card' then
+      for _, c in pairs(args.scoring_hand) do
+        if PB_UTIL.is_rank(c, 'Jack') then
+          G.GAME.paperback.find_jimbo_unlock = true
+          break
+        end
+      end
+    end
+
+    return args.type == 'round_win' and G.GAME.paperback.find_jimbo_unlock
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        localize('High Card', 'poker_hands'),
+        localize('Jack', 'ranks')
+      }
+    }
+  end,
   loc_vars = function(self, info_queue, card)
     return {
       vars = {

@@ -11,7 +11,7 @@ if PB_UTIL.config.suits_enabled then
     pos = { x = 3, y = 0 },
     atlas = 'jokers_atlas',
     cost = 6,
-    unlocked = true,
+    unlocked = false,
     discovered = false,
     blueprint_compat = true,
     eternal_compat = true,
@@ -28,6 +28,19 @@ if PB_UTIL.config.suits_enabled then
         },
         key = "j_paperback_pride_flag_spectrums"
       }
+    end,
+
+    check_for_unlock = function(self, args)
+      if args.type == 'hand_contents' then
+        local eval = evaluate_poker_hand(args.cards)
+        if next(eval['paperback_Spectrum']) then
+          return true
+        end
+      end
+      return false
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+      return { key = "j_paperback_pride_flag_spectrums" }
     end,
 
     -- Calculate function for the Joker
@@ -86,7 +99,7 @@ else
     pos = { x = 3, y = 0 },
     atlas = 'jokers_atlas',
     cost = 6,
-    unlocked = true,
+    unlocked = false,
     discovered = false,
     blueprint_compat = true,
     eternal_compat = true,
@@ -101,6 +114,31 @@ else
         },
         key = "j_paperback_pride_flag_no_spectrums"
       }
+    end,
+
+    locked_loc_vars = function(self, info_queue, card)
+      return {
+        vars = {
+          4
+        },
+        key = "j_paperback_pride_flag_no_spectrums"
+      }
+    end,
+
+    check_for_unlock = function(self, args)
+      if args.type == 'hand' then
+        local new_cards = {}
+        local wild_check = false
+
+        for _, card in ipairs(args.scoring_hand) do
+          if SMODS.has_any_suit(card) and not wild_check then
+            wild_check = true
+          else
+            table.insert(new_cards, card)
+          end
+        end
+        return wild_check and PB_UTIL.get_unique_suits(new_cards, nil, true) >= 4
+      end
     end,
 
     -- Calculate function for the Joker
