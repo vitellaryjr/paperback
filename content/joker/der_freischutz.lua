@@ -7,7 +7,7 @@ SMODS.Joker{
     },
   },
   rarity = 2,
-  pos = {x = 14, y = 4},
+  pos = { x = 14, y = 4 },
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = true,
@@ -18,13 +18,13 @@ SMODS.Joker{
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return {vars = {math.min(card.ability.extra.current, card.ability.extra.max), card.ability.extra.max}}
+    return { vars = { math.min(card.ability.extra.current, card.ability.extra.max), card.ability.extra.max } }
   end,
 
   calculate = function(self, card, context)
     if context.after and context.cardarea == G.jokers then
       local active = true
-      for _,v in ipairs(context.scoring_hand) do
+      for _, v in ipairs(context.scoring_hand) do
         if not PB_UTIL.is_rank(v, "7") then
           active = false
           break
@@ -37,7 +37,7 @@ SMODS.Joker{
         if card.ability.extra.current <= card.ability.extra.max then
           local targets = {}
           local lowest_chips = math.huge -- lol
-          for _,v in ipairs(G.playing_cards) do
+          for _, v in ipairs(G.playing_cards) do
             local chips = v:get_chip_bonus()
             if chips < lowest_chips then
               targets = {}
@@ -48,7 +48,7 @@ SMODS.Joker{
             end
           end
           local target = pseudorandom_element(targets, pseudoseed('freischutz'))
-          SMODS.destroy_cards({target})
+          SMODS.destroy_cards({ target })
           if card.ability.extra.current == card.ability.extra.max then
             juice_card_until(card, function()
               return not card.ability.extra.triggered

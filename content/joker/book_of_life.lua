@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "book_of_life",
   config = {
     extra = {
@@ -8,7 +8,7 @@ SMODS.Joker{
     },
   },
   rarity = 3,
-  pos = {x = 14, y = 7},
+  pos = { x = 14, y = 7 },
   atlas = "jokers_atlas",
   cost = 8,
   unlocked = true,
@@ -19,7 +19,7 @@ SMODS.Joker{
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.max, card.ability.extra.max - card.ability.extra.current, card.ability.extra.antes}}
+    return { vars = { card.ability.extra.max, card.ability.extra.max - card.ability.extra.current, card.ability.extra.antes } }
   end,
 
   calculate = function(self, card, context)

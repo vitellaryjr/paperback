@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "torii",
   config = {
     extra = {
@@ -8,7 +8,7 @@ SMODS.Joker{
     },
   },
   rarity = 3,
-  pos = {x = 15, y = 0},
+  pos = { x = 15, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
   unlocked = true,
@@ -22,10 +22,10 @@ SMODS.Joker{
     local active, colours
     if G.GAME.paperback.finished_antes[G.GAME.round_resets.ante] then
       active = localize('paperback_inline_inactive')
-      colours = {G.C.UI.TEXT_INACTIVE}
+      colours = { G.C.UI.TEXT_INACTIVE }
     else
       active = localize('paperback_inline_active')
-      colours = {G.C.FILTER}
+      colours = { G.C.FILTER }
     end
     return {
       vars = {
@@ -46,15 +46,15 @@ SMODS.Joker{
         ease_ante(card.ability.extra.antes)
         G.GAME.round_resets.blind_ante = (G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante) + card.ability.extra.antes
         return {
-          message = localize{
+          message = localize {
             type = 'variable',
             key = 'paperback_a_ante',
-            vars = {card.ability.extra.antes},
+            vars = { card.ability.extra.antes },
           }
         }
       else
         return {
-          message = localize{
+          message = localize {
             type = 'variable',
             key = 'paperback_a_completion',
             vars = {

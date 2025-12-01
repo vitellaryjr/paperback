@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "watermelon",
   config = {
     extra = {
@@ -7,7 +7,7 @@ SMODS.Joker{
     }
   },
   rarity = 3,
-  pos = {x = 12, y = 10},
+  pos = { x = 12, y = 10 },
   atlas = "jokers_atlas",
   cost = 8,
   unlocked = true,
@@ -33,7 +33,7 @@ SMODS.Joker{
     if context.setting_ability and context.other_card.ability.set == 'Enhanced' and not context.unchanged then
       card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
       return {
-        message = localize{type = 'variable', key = 'a_xmult', vars = {card.ability.extra.a_xmult}},
+        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.a_xmult } },
         colour = G.C.MULT
       }
     end
@@ -47,7 +47,7 @@ SMODS.Joker{
         }
       else
         return {
-          message = localize{
+          message = localize {
             type = 'variable',
             key = 'a_xmult_minus',
             vars = { card.ability.extra.a_xmult * #context.removed }
@@ -57,7 +57,7 @@ SMODS.Joker{
       end
     end
     if context.cardarea == G.jokers and context.joker_main then
-      return {xmult = card.ability.extra.x_mult}
+      return { xmult = card.ability.extra.x_mult }
     end
   end
 }

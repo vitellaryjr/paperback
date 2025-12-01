@@ -4,7 +4,7 @@ SMODS.Joker{
     extra = 2,
   },
   rarity = 1,
-  pos = {x = 22, y = 5},
+  pos = { x = 22, y = 5 },
   atlas = "jokers_atlas",
   cost = 5,
   unlocked = false,
@@ -15,14 +15,14 @@ SMODS.Joker{
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra}}
+    return { vars = { card.ability.extra } }
   end,
 
-  unlock_condition = {type = 'c_losses', extra = 1},
+  unlock_condition = { type = 'c_losses', extra = 1 },
 
   calculate = function(self, card, context)
     if G.GAME.current_round.hands_played == 0 and context.repetition and context.cardarea == G.play then
-      for i = 1,card.ability.extra do
+      for i = 1, card.ability.extra do
         if context.other_card == context.scoring_hand[i] then
           return {
             repetitions = 1,

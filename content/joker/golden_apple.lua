@@ -1,6 +1,6 @@
 local function get_enhanced()
   local count = 0
-  for _,v in ipairs(G.playing_cards or {}) do
+  for _, v in ipairs(G.playing_cards or {}) do
     if v.ability.set == 'Enhanced' then
       count = count + 1
     end
@@ -8,7 +8,7 @@ local function get_enhanced()
   return count
 end
 
-SMODS.Joker{
+SMODS.Joker {
   key = "golden_apple",
   config = {
     extra = {
@@ -17,7 +17,7 @@ SMODS.Joker{
     }
   },
   rarity = 2,
-  pos = {x = 24, y = 6},
+  pos = { x = 24, y = 6 },
   atlas = "jokers_atlas",
   cost = 7,
   unlocked = false,
@@ -41,13 +41,13 @@ SMODS.Joker{
   end,
 
   locked_loc_vars = function(self, info_queue, card)
-    return {vars = {5}}
+    return { vars = { 5 } }
   end,
 
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' then
       local count = 0
-      for _,v in ipairs(G.playing_cards) do
+      for _, v in ipairs(G.playing_cards) do
         if SMODS.has_enhancement(v, 'm_gold') and PB_UTIL.is_rank(v, 'Ace') then
           count = count + 1
           if count >= 5 then
@@ -60,7 +60,7 @@ SMODS.Joker{
   end,
 
   in_pool = function(self, args)
-    for _,v in ipairs(G.playing_cards) do
+    for _, v in ipairs(G.playing_cards) do
       if v.ability.set == 'Enhanced' then
         return true
       end
@@ -83,10 +83,10 @@ SMODS.Joker{
         }
       else
         return {
-          message = localize{
+          message = localize {
             type = 'variable',
             key = 'paperback_a_round_minus',
-            vars = {1}
+            vars = { 1 }
           }
         }
       end

@@ -1,8 +1,8 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "jokers_11",
   config = {},
   rarity = 3,
-  pos = {x = 13, y = 7},
+  pos = { x = 13, y = 7 },
   atlas = "jokers_atlas",
   cost = 8,
   unlocked = false,
@@ -13,13 +13,13 @@ SMODS.Joker{
   soul_pos = nil,
 
   locked_loc_vars = function(self, info_queue, card)
-    return {vars = {11}}
+    return { vars = { 11 } }
   end,
 
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' then
       local count = 0
-      for _,v in ipairs(G.playing_cards) do
+      for _, v in ipairs(G.playing_cards) do
         if PB_UTIL.is_rank(v, 'Ace') then
           count = count + 1
           if count >= 11 then
@@ -37,10 +37,12 @@ SMODS.Joker{
         return {
           message = localize('paperback_plus_tag'),
           func = function()
-            G.E_MANAGER:add_event(Event({func = function()
-              PB_UTIL.add_tag(PB_UTIL.poll_tag("jokers_11"))
-              return true
-            end}))
+            G.E_MANAGER:add_event(Event({
+              func = function()
+                PB_UTIL.add_tag(PB_UTIL.poll_tag("jokers_11"))
+                return true
+              end
+            }))
           end
         }
       end

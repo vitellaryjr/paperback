@@ -1,10 +1,10 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "prescript",
   config = {
     extra = 'High Card',
   },
   rarity = 2,
-  pos = {x = 22, y = 10},
+  pos = { x = 22, y = 10 },
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = true,
@@ -15,12 +15,12 @@ SMODS.Joker{
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra}}
+    return { vars = { card.ability.extra } }
   end,
 
   set_ability = function(self, card, initial, delay_sprites)
     local _poker_hands = {}
-    for k,v in pairs(G.GAME.hands) do
+    for k, v in pairs(G.GAME.hands) do
       if SMODS.is_poker_hand_visible(k) then _poker_hands[#_poker_hands + 1] = k end
     end
     card.ability.extra = pseudorandom_element(_poker_hands, pseudoseed((card.area and card.area.config.collection) and 'prescript_fake' or 'prescript'))
@@ -32,7 +32,7 @@ SMODS.Joker{
     end
     if not context.blueprint and context.end_of_round and context.main_eval then
       local _poker_hands = {}
-      for k,v in pairs(G.GAME.hands) do
+      for k, v in pairs(G.GAME.hands) do
         if SMODS.is_poker_hand_visible(k) and k ~= card.ability.extra then _poker_hands[#_poker_hands + 1] = k end
       end
       card.ability.extra = pseudorandom_element(_poker_hands, pseudoseed('prescript'))

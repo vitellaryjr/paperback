@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "nazar",
   config = {
     extra = {
@@ -7,7 +7,7 @@ SMODS.Joker{
     },
   },
   rarity = 1,
-  pos = {x = 22, y = 7},
+  pos = { x = 22, y = 7 },
   atlas = "jokers_atlas",
   cost = 5,
   unlocked = false,
@@ -18,7 +18,7 @@ SMODS.Joker{
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return {vars = {card.ability.extra.chips_gain, card.ability.extra.chips}}
+    return { vars = { card.ability.extra.chips_gain, card.ability.extra.chips } }
   end,
 
   check_for_unlock = function(self, args)
