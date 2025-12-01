@@ -230,6 +230,19 @@ return {
           "Eaten in {C:attention}#1#{} rounds"
         }
       },
+      j_paperback_golden_apple = {
+        name = "Golden Apple",
+        text = {
+          "Earn {C:money}$#1#{} for each {C:attention}enhanced{}",
+          "card in your deck at the",
+          "end of the next {C:attention}#2#{} rounds",
+          "{C:inactive}(Currently {C:money}$#3#{C:inactive})",
+        },
+        unlock = {
+          "Have {C:attention}#1#{} or more {C:attention}Gold{}",
+          "{C:attention}Aces{} in your deck",
+        }
+      },
       j_paperback_pear = {
         name = "Pear",
         text = {
@@ -483,6 +496,80 @@ return {
           "{s:0.8}hand changes every round",
           "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
         }
+      },
+      j_paperback_jokers_11 = {
+        name = "Joker's 11",
+        text = {
+          "{C:attention}Aces{} held in hand after",
+          "defeating a {C:attention}Boss{} Blind",
+          "create a random {C:attention}Tag{}",
+        },
+        unlock = {
+          "Have {C:attention}#1#{} Aces",
+          "in your deck",
+        }
+      },
+      j_paperback_book_of_life = {
+        name = "Book of Life",
+        text = {
+          "After winning {C:attention}#1#{} {C:inactive}(#2#){} Blinds,",
+          "this Joker {C:red}self-destructs{}",
+          "and gives {C:attention}#3#{} Antes",
+        }
+      },
+      j_paperback_hamsa = {
+        name = "Hamsa",
+        text = {
+          "On the {C:attention}first{} hand of round,",
+          "retrigger the first",
+          "{C:attention}#1#{} played cards...",
+        },
+        unlock = {
+          "Lose a run"
+        }
+      },
+      j_paperback_hamsa_r = {
+        name = "Hamsa",
+        text = {
+          "...On the {C:attention}last{} hand of round,",
+          "{C:green}+#1#{} to all {C:green}listed probabilites{}",
+        },
+        unlock = {
+          "Have {C:attention}#1#{}",
+          "for {C:attention}#2#{} round",
+        }
+      },
+      j_paperback_hamsa_r_collection = {
+        name = "Hamsa (Reversed)",
+        text = {
+          "...On the {C:attention}last{} hand of round,",
+          "{C:green}+#1#{} to all {C:green}listed probabilites{}",
+        },
+        unlock = {
+          "Have {C:attention}#1#{}",
+          "for {C:attention}#2#{} round",
+        }
+      },
+      j_paperback_nazar = {
+        name = "Nazar",
+        text = {
+          "This Joker gains {C:chips}+#1#{} Chips",
+          "when a {C:paperback_minor_arcana}Minor Arcana{} or",
+          "{C:tarot}Tarot{} card is used",
+          "{C:inactive}(Currently {C:chips}+#2#{} {C:inactive}Chips){}",
+        },
+        unlock = {
+          "Discover every {E:1,C:tarot}Tarot{}",
+          "and {E:1,C:paperback_minor_arcana}Minor Arcana{} card",
+        }
+      },
+      j_paperback_prescript = {
+        name = "Prescript",
+        text = {
+          "If {C:attention}first{} hand of round",
+          "contains a {C:attention}#1#{},",
+          "retrigger all played cards",
+        },
       },
       j_paperback_ultra_rare = {
         name = "Ultra Rare",
@@ -806,6 +893,15 @@ return {
           "Skipping a {C:attention}Blind{} or defeating",
           "a {C:attention}Boss Blind{} gives",
           "an {C:money}Angel Investment Tag"
+        }
+      },
+      j_paperback_der_freischutz = {
+        name = "Der Freischütz",
+        text = {
+          "If poker hand contains only {C:attention}7s{},",
+          "destroy the {C:attention}lowest{} chip-value",
+          "{C:attention}non-7{} in your full deck",
+          "{C:inactive}Avoid the Seventh Bullet... #1#/#2#{}",
         }
       },
       j_paperback_marble_soda = {
@@ -1176,6 +1272,15 @@ return {
           "{X:mult,C:white}X#1#{} Mult",
           "{C:green}#2# in #3#{} chance this card",
           "is eaten at end of round",
+        },
+      },
+      j_paperback_watermelon = {
+        name = "Watermelon",
+        text = {
+          "Gains {X:mult,C:white}X#1#{} Mult when {C:attention}Enhancing{}",
+          "a playing card. Loses {X:mult,C:white}X#1#{} Mult",
+          "when a playing card is {C:attention}destroyed{}",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
         },
       },
       j_paperback_charred_marshmallow = {
@@ -1871,6 +1976,15 @@ return {
           "{C:attention}selling{} this Joker adds {C:dark_edition}Negative{}",
           "to a {C:attention}random{} Joker",
           "{C:inactive}(Currently {C:attention}#2#{C:inactive} Heads)"
+        }
+      },
+      j_paperback_torii = {
+        name = "Torii",
+        text = {
+          "Gives {C:attention}#1#{} Ante every",
+          "{C:attention}#2#{} {C:inactive}(#3#){} skipped Blinds",
+          "{C:inactive}(Only counts skips in new antes,{}",
+          "{C:inactive}currently {V:1}#4#{C:inactive})",
         }
       },
       j_paperback_banana_man = {
@@ -3312,6 +3426,10 @@ return {
       paperback_jestrogen_ex = "Fem!",
       paperback_punch_card_active = "Tell your friends!",
       paperback_punch_card_ex = "Wrong Warp!",
+      paperback_hamsa_reverse = "Reversed!",
+      paperback_der_freischutz_fire = "Fire...",
+      paperback_inline_active = "active",
+      paperback_inline_inactive = "inactive",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
@@ -3404,6 +3522,7 @@ return {
       paperback_a_round_minus = "-#1# Round",
       paperback_a_plus_cards = "+#1# #2#s",
       paperback_a_plus_tags = "+#1# Tags",
+      paperback_a_ante = "#1# Ante",
     },
     ranks = {
       paperback_Apostle = 'Apostle',
