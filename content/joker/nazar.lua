@@ -16,13 +16,16 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = false,
   soul_pos = nil,
+  paperback = {
+    requires_minor_arcana = true
+  },
 
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.chips_gain, card.ability.extra.chips } }
   end,
 
   check_for_unlock = function(self, args)
-    if args.type == 'discover_amount' then
+    if args.type == 'discover_amount' and (G.DISCOVER_TALLIES['paperback_minor_arcanas'] ~= nil) then
       return (G.DISCOVER_TALLIES['tarots'].tally >= G.DISCOVER_TALLIES['tarots'].of) and (G.DISCOVER_TALLIES['paperback_minor_arcanas'].tally >= G.DISCOVER_TALLIES['paperback_minor_arcanas'].of)
     end
   end,

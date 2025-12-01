@@ -1,4 +1,4 @@
-SMODS.Joker{
+SMODS.Joker {
   key = "der_freischutz",
   config = {
     extra = {
