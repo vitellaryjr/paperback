@@ -53,7 +53,6 @@ PB_UTIL.MinorArcana {
       elseif modifier == 'enhancement' then
         local enhancement = SMODS.poll_enhancement {
           key = 'five_of_swords_enhancement',
-          options = PB_UTIL.get_ranked_enhancements(),
           guaranteed = true
         }
 

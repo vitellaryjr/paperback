@@ -48,7 +48,6 @@ SMODS.Joker {
         if PB_UTIL.chance(card, 'dd_enhancement_roll') and v.ability.set ~= 'Enhanced' then
           local enhancement = SMODS.poll_enhancement {
             key = 'dd_enhancement',
-            options = PB_UTIL.get_ranked_enhancements(),
             guaranteed = true
           }
 
