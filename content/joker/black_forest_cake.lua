@@ -45,13 +45,12 @@ SMODS.Joker {
     end
 
     if not context.blueprint and context.end_of_round and context.main_eval then
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'mult',
-        scalar_value = 'a_mult',
-        message_colour = G.C.MULT
-      })
-      return nil, true
+      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
+      return {
+        message = localize('k_upgrade_ex'),
+        card = card,
+        colour = G.C.MULT,
+      }
     end
 
     if not context.blueprint and PB_UTIL.count_destroyed_things(context) > 0

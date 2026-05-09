@@ -57,21 +57,17 @@ SMODS.Joker {
 
       for _, v in ipairs(context.removed) do
         if SMODS.has_enhancement(v, card.ability.extra.enhancement) then
-          inc = inc + 1
+          inc = inc + card.ability.extra.increase
         end
       end
 
       if inc > 0 then
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'total',
-          scalar_value = 'increase',
-          operation = function(ref_table, ref_value, initial, scaling)
-            ref_table[ref_value] = initial + scaling * inc
-            G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + scaling * inc
-          end
-        })
-        return nil, true
+        G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + inc
+        card.ability.extra.total = card.ability.extra.total + inc
+
+        return {
+          message = localize('k_upgrade_ex')
+        }
       end
     end
   end

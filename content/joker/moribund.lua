@@ -4,7 +4,6 @@ SMODS.Joker {
     extra = {
       a_mult = 5,
       mult = 0,
-      ax_mult = 2,
     }
   },
   attributes = {
@@ -42,24 +41,22 @@ SMODS.Joker {
       if context.end_of_round and context.main_eval then
         -- If blind not cleared, double current mult
         if to_big(G.GAME.chips - G.GAME.blind.chips) < to_big(0) then
-          SMODS.scale_card(card, {
-            ref_table = card.ability.extra,
-            ref_value = 'mult',
-            scalar_value = 'ax_mult',
-            operation = 'X',
-            message_key = 'paperback_doubled_ex',
-            message_colour = G.C.MULT
-          })
-          return nil, true
+          card.ability.extra.mult = card.ability.extra.mult * 2
+
+          return {
+            message = localize('paperback_doubled_ex'),
+            colour = G.C.MULT,
+            card = card
+          }
         elseif G.GAME.current_round.hands_left == 0 then
           -- If blind cleared and 0 hands left, upgrade joker
-          SMODS.scale_card(card, {
-            ref_table = card.ability.extra,
-            ref_value = 'mult',
-            scalar_value = 'a_mult',
-            message_colour = G.C.MULT
-          })
-          return nil, true
+          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
+
+          return {
+            message = localize('k_upgrade_ex'),
+            card = card,
+            colour = G.C.MULT,
+          }
         end
       end
     end

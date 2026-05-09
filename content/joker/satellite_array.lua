@@ -27,26 +27,17 @@ SMODS.Joker {
       }
     end
     if context.after and card.ability.extra.chips > 0 and not context.blueprint then
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'chips',
-        scalar_value = 'chips_rem',
-        operation = '-',
-        scaling_message = {
-          message = localize('paperback_downgrade_ex'),
-          colour = G.C.ORANGE
-        }
-      })
-      return nil, true
+      card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chips_rem
+      return {
+        message = localize('paperback_downgrade_ex'),
+        colour = G.C.ORANGE
+      }
     end
     if context.using_consumeable and not context.blueprint and context.consumeable.ability.set == 'Planet' then
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'chips',
-        scalar_value = 'chips_mod',
-        message_key = 'a_chips'
-      })
-      return nil, true
+      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
+      return {
+        message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } }
+      }
     end
   end,
 

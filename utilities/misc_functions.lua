@@ -997,12 +997,7 @@ function PB_UTIL.panorama_logic(self, card, context)
       local xMult = card.ability.extra.xMult
       -- Upgrade the xMult if not blueprint
       if not context.blueprint then
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'xMult',
-          scalar_value = 'xMult_gain',
-          no_message = true
-        })
+        card.ability.extra.xMult = card.ability.extra.xMult + card.ability.extra.xMult_gain
       end
 
       return {

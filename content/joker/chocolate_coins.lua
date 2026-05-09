@@ -32,18 +32,14 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.starting_shop and context.cardarea == G.jokers then
-      if card.ability.extra.dollars - card.ability.extra.eaten <= 0 then
+      card.ability.extra.enabled = true
+      card.ability.extra.dollars = card.ability.extra.dollars - card.ability.extra.eaten
+      if card.ability.extra.dollars <= 0 then
         PB_UTIL.destroy_joker(card)
-        return { message = localize('k_eaten_ex') }
-      else
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'dollars',
-          scalar_value = 'eaten',
-          operation = '-',
-          no_message = true
-        })
-        return nil, true
+        return {
+          message = localize('k_eaten_ex'),
+          colour = G.C.FILTER
+        }
       end
     end
   end,

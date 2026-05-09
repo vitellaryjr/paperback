@@ -47,22 +47,17 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
-      local upgrade = 0
+      local upgraded
       for _, v in ipairs(context.scoring_hand) do
         if SMODS.has_enhancement(v, 'm_paperback_domino') then
-          upgrade = upgrade + 1
+          card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
+          upgraded = true
         end
       end
-      if upgrade > 0 then
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'xmult',
-          scalar_value = 'xmult_mod',
-          operation = function(ref_table, ref_value, initial, scaling)
-            ref_table[ref_value] = initial + scaling * upgrade
-          end
-        })
-        return nil, true
+      if upgraded then
+        return {
+          message = localize('k_upgrade_ex'),
+        }
       end
     end
 

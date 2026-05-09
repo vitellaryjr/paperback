@@ -67,6 +67,7 @@ SMODS.Joker {
 
       if suits.dark + suits.light + suits.wild >= 2 then
         local BGcolour
+        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
         if card.ability.extra.is_white then
           BGcolour = G.C.BLACK
           card.ability.extra.is_white = false
@@ -74,14 +75,14 @@ SMODS.Joker {
           BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
           card.ability.extra.is_white = true
         end
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'x_mult',
-          scalar_value = 'x_mult_mod',
-          message_key = 'a_xmult',
-          message_colour = BGcolour
-        })
-        return nil, true
+        return {
+          message = localize {
+            type = 'variable',
+            key = 'a_xmult',
+            vars = { card.ability.extra.x_mult }
+          },
+          colour = BGcolour
+        }
       end
     end
 

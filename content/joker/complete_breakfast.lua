@@ -5,8 +5,7 @@ SMODS.Joker {
       mult = 5,
       chips = 50,
       odds = 8,
-      chance_multiplier = 1,
-      chance_inc = 1,
+      chance_multiplier = 1
     }
   },
   attributes = {
@@ -81,12 +80,8 @@ SMODS.Joker {
           colour = G.C.MULT
         }
       else
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'chance_multiplier',
-          scalar_value = 'chance_inc',
-          no_message = true,
-        })
+        card.ability.extra.chance_multiplier = card.ability.extra.chance_multiplier + 1
+
         return {
           message = localize('k_safe_ex'),
           colour = G.C.CHIPS,

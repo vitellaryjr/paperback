@@ -49,13 +49,11 @@ SMODS.Joker {
       end
     end
     if context.end_of_round and context.main_eval and context.beat_boss and not context.blueprint then
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'xm',
-        scalar_value = 'change',
-        message_colour = G.C.MULT
-      })
-      return nil, true
+      card.ability.extra.xm = card.ability.extra.xm + card.ability.extra.change
+      return {
+        message = localize('k_upgrade_ex'),
+        colour = G.C.MULT
+      }
     end
   end
 }

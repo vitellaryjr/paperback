@@ -47,18 +47,13 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play and not context.blueprint then
       if SMODS.has_enhancement(context.other_card, card.ability.extra.enhancement) then
-        SMODS.scale_card(card, {
-          ref_table = card.ability,
-          ref_value = 'extra_value',
-          scalar_table = card.ability.extra,
-          scalar_value = 'a_value',
-          scaling_message = {
-            message = localize('k_val_up'),
-            colour = G.C.MONEY
-          }
-        })
-        card:set_cost()
-        return nil, true
+        PB_UTIL.modify_sell_value(card, card.ability.extra.a_value)
+
+        return {
+          focus = card,
+          message = localize('k_val_up'),
+          colour = G.C.MONEY
+        }
       end
     end
   end

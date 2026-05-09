@@ -52,13 +52,11 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
       if next(context.poker_hands['Pair']) then
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'chips',
-          scalar_value = 'chip_gain',
-          message_colour = G.C.CHIPS
-        })
-        return nil, true
+        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
+        return {
+          message = localize('k_upgrade_ex'),
+          colour = G.C.CHIPS
+        }
       elseif card.ability.extra.chips < 10 then
         PB_UTIL.destroy_joker(card)
         return {
@@ -66,14 +64,11 @@ SMODS.Joker {
           colour = G.C.FILTER
         }
       else
-        SMODS.scale_card(card, {
-          ref_table = card.ability.extra,
-          ref_value = 'chips',
-          scalar_value = 'chip_loss',
-          message_key = 'a_chips_minus',
-          message_colour = G.C.CHIPS
-        })
-        return nil, true
+        card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chip_loss
+        return {
+          message = localize { type = 'variable', key = 'a_chips_minus', vars = { card.ability.extra.chip_loss } },
+          colour = G.C.CHIPS
+        }
       end
     end
 

@@ -37,14 +37,10 @@ SMODS.Joker {
       }
     end
     if context.end_of_round and context.main_eval and not context.blueprint then
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'xm',
-        scalar_value = 'change',
-        message_key = 'a_xmult',
-        message_colour = G.C.MULT
-      })
-      return nil, true
+      card.ability.extra.xm = card.ability.extra.xm + card.ability.extra.change
+      return {
+        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.xm } }
+      }
     end
     if context.playing_card_added or context.remove_playing_cards and not context.blueprint then
       card.ability.extra.xm = 1
