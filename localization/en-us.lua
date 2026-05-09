@@ -1729,9 +1729,8 @@ return {
       j_paperback_pride_flag_no_spectrums = {
         name = "Pride Flag",
         text = {
-          "Gains {C:mult}+#1#{} Mult if scored hand",
-          "contains {C:attention}three{} unique suits",
-          "{C:inactive}(Currently {C:mult}+#2#{} {C:inactive}Mult)",
+          "{C:chips}+#1#{} Chips per {C:attention}unqiue{}",
+          "suit in poker hand"
         },
         unlock = {
           "Play a hand scoring {C:attention,E:1}#1#{} suits",
@@ -4276,6 +4275,7 @@ return {
       paperback_a_plus_cards = "+#1# #2#s",
       paperback_a_plus_tags = "+#1# Tags",
       paperback_a_dollars = "$#1#",
+      paperback_a_odds = "+#1# Odds",
 
       paperback_a_plus_consumable_slot = "+#1# Consumable Slots",
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",
